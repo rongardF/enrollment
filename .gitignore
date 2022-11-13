@@ -1,0 +1,9 @@
+.project
+.pydevproject
+__pycache__/
+.env
+.venv
+env/
+venv/
+.dev_materials/
+.dev_materials/
