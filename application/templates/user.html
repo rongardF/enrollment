@@ -1,0 +1,20 @@
+{% extends "layout.html" %} <!-- "extends" keyword is used to import the surrounding content from layout.html-->
+
+{% block content %} <!-- in layout.html the content block will be replaced with whatever is between these Jinja statements-->
+    
+    <div class="row">
+        <div class="col-md-12 text-center">
+            {% for user in users %}
+            <dl
+            	<dt>User ID: {{ user.user_id}}</dt>
+            	<dd>Email: {{ user.email}}</dd>
+            	<dd>Password:{{ user.password }} </dd>
+            </dl>
+            {% else %}
+            	<h3>No users yet!</h3>
+            {% endfor %}
+           </div>
+    </div>
+	
+{% endblock %}
+
