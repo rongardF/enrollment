@@ -1,18 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>UTA - Home Page</title>
+    <title>Test school - Homepage</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="static/css/main.css"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}"/>
 </head>
 <body>
 
 <div class="container-fluid text-center top-container">
-    <img src="static/images/uta-logo-200.png">
+    <img src="{{ url_for('static', filename='images/logo.png') }}">
 </div>
 <div class="container">
     {% include "includes/nav.html" %}
+    
+    {% if session["username"] %}
+    <span class="user">Welcome, {{session["username"]}}</span>
+    {% endif %}
+    
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    	{% if messages %}
+    		{% for category, messages in messages %}
+    			<div class="alert alert-{{category}}">
+    				<p> {{ messages }} </p>
+    			</div>
+    		
+    		{% endfor %}
+    	{% endif %}
+    {% endwith %}
     
     {% block content %} <!-- This will be replaced with whatever is in the file that uses this template-->
     {% endblock %}
